@@ -1,0 +1,31 @@
+package com.example.projectchess
+
+import javafx.scene.image.Image
+import javafx.scene.image.ImageView
+
+open class Piece(var color:String, var row:Int, var col:Int,var type:String):ImageView() {
+    var posibleMoves: ArrayList<String>? = null
+
+    //    var type:String?=null
+    fun setPiece(image:Image){
+        this.image=image
+    }
+
+    fun setImage(){
+        var namePiece ="pieces/"+ this.color+""+this.type+".png"
+//        var namePiece ="pieces/whiteKing.png"
+//        println(namePiece)
+        this.setPiece(Image(javaClass.getResourceAsStream(namePiece)))
+    }
+
+    open fun canPieceMove(rowFin: Int, colFin: Int): Boolean{
+        return (rowFin in 0..7)&&(colFin in 0..7)
+    }
+
+    open fun showAllPosibleMoves(isOn: Boolean, cb: ChessBoard): ArrayList<String>? {
+        return posibleMoves
+    }
+//    fun getType():String{
+//        return type
+//    }
+}
