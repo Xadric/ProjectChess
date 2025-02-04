@@ -52,7 +52,7 @@ class Game(chessBoard: GridPane, theme: String) {
     private fun showAllPosibleMoves(game: Boolean) {
         if(game){
             var pp = currPiece!!.parent.parent as GridPane
-            for (i in 0.. pp.children.size){
+            for (i in 0.. pp.children.size-1){
                 var child = pp.children[i] as Square
                 if (currPiece!!.canPieceMove(child.col,child.row)){
                     var effect = Glow()
@@ -72,7 +72,7 @@ class Game(chessBoard: GridPane, theme: String) {
         square.children.add(currPiece)
         square.isOccupated=true
         deselectPiece(true)
-        println(square.children[0])
+//        println(square.children[0])
         var currentPiece=square.children[0] as Piece
         currentPiece.row=square.col
         currentPiece.col=square.row
@@ -80,6 +80,10 @@ class Game(chessBoard: GridPane, theme: String) {
 
     private fun deselectPiece(changePlayer: Boolean) {
         currPiece!!.effect=null
+        for (i in 0..(currPiece!!.parent.parent as GridPane).children.size-1) {
+            var pp = (currPiece!!.parent.parent as GridPane).children[i] as Square
+            pp.effect=null
+        }
         currPiece=null
         if (changePlayer){
             currPlayer=if(currPlayer=="white")"black" else "white"
