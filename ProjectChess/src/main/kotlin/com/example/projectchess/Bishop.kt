@@ -24,7 +24,10 @@ class Bishop(color: String, row: Int, col: Int) : Piece(color, row, col, "Bishop
 
                     if (cc.col == row+(i*dirRow) && cc.row == col+(i*dirCol) && cc.isOccupated){
                         val ccp = cc.children[0] as Piece
-                        if (row+(i*dirRow)==rowFin && col+(i*dirCol)==colFin && ccp.color!=this.color)return true
+                        if (row+(i*dirRow)==rowFin && col+(i*dirCol)==colFin && ccp.color!=this.color){
+                            ccp.effect=setPossibleKillShadow()
+                            return true
+                        }
                         return false
                     }
                 }

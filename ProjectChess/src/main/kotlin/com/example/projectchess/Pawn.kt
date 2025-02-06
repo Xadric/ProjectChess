@@ -1,6 +1,5 @@
 package com.example.projectchess
 
-import javafx.scene.effect.Glow
 import javafx.scene.layout.GridPane
 
 
@@ -26,7 +25,12 @@ class Pawn(color: String, row: Int, col: Int) : Piece(color, row, col, "Pawn") {
             }
             if (child.isOccupated)
             if ((col == colFin - 1 || col == colFin + 1) && rowFin == row + dir) {
-                return true
+                val ccp = child.children[0] as Piece
+                if (ccp.color!=this.color) {
+                    ccp.effect=setPossibleKillShadow()
+
+                    return true
+                }
             }
 
 

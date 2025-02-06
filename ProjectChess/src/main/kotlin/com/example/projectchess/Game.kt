@@ -76,6 +76,8 @@ class Game(chessBoard: GridPane, theme: String) {
         var currentPiece=square.children[0] as Piece
         currentPiece.row=square.col
         currentPiece.col=square.row
+        val pp=parent.parent as GridPane
+
     }
 
     private fun deselectPiece(changePlayer: Boolean) {
@@ -83,6 +85,10 @@ class Game(chessBoard: GridPane, theme: String) {
         for (i in 0..(currPiece!!.parent.parent as GridPane).children.size-1) {
             var pp = (currPiece!!.parent.parent as GridPane).children[i] as Square
             pp.effect=null
+            if (pp.isOccupated) {
+                val ppc = pp.children[0] as Piece
+                ppc.effect=null
+            }
         }
         currPiece=null
         if (changePlayer){

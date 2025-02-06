@@ -1,7 +1,9 @@
 package com.example.projectchess
 
+import javafx.scene.effect.Shadow
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.paint.Color
 
 open class Piece(var color:String, var row:Int, var col:Int,var type:String):ImageView() {
     var posibleMoves: ArrayList<String>? = null
@@ -28,4 +30,15 @@ open class Piece(var color:String, var row:Int, var col:Int,var type:String):Ima
 //    fun getType():String{
 //        return type
 //    }
+ fun setPossibleKillShadow(): Shadow {
+    // create target color
+
+    val targetColor = Color.RED
+    var effect = Shadow()
+    effect.color=targetColor
+//    effect.width = 50.0
+//    effect.height = 50.0
+
+    return effect
+}
 }

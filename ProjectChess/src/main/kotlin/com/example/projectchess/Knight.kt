@@ -14,7 +14,10 @@ class Knight(color: String, row: Int, col: Int) : Piece(color, row, col, "Knight
                     if (!cc.isOccupated)return true
                     else{
                         val ccp = cc.children[0] as Piece
-                        if (ccp.color==this.color)return false
+                        if (ccp.color==this.color){
+                            ccp.effect=setPossibleKillShadow()
+                            return false
+                        }
                         else return true
                     }
                 }

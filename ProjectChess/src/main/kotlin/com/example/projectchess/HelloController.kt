@@ -9,6 +9,6 @@ class HelloController {
     lateinit var chessBoard: GridPane
 
     fun initialize(){
-        val game = Game(chessBoard,"Dusk")
+        val game = Game(chessBoard,"CoralLesson")
     }
 }
