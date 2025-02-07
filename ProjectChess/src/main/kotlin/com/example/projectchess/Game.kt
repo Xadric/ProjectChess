@@ -67,6 +67,7 @@ class Game(chessBoard: GridPane, theme: String) {
 
     private fun dropPiece(square: Square) {
         val parent = currPiece!!.parent as Square
+        currPiece!!.kolMoves++
         parent.isOccupated=false
         parent.children.removeAll()
         square.children.add(currPiece)
@@ -74,10 +75,55 @@ class Game(chessBoard: GridPane, theme: String) {
         deselectPiece(true)
 //        println(square.children[0])
         var currentPiece=square.children[0] as Piece
+        val prRow=currentPiece.row
+        val prCol=currentPiece.col
         currentPiece.row=square.col
         currentPiece.col=square.row
         val pp=parent.parent as GridPane
 
+
+        if (currentPiece.type=="King") {
+            if ((prRow == 0 || prRow == 7) && prCol == 4)
+                if (currentPiece.col == 2) {
+                    for (i in 0..<pp.children.size) {
+                        val cc = pp.children[i] as Square
+                        if (cc.col == prRow && cc.row == 0) {
+                            val ccp = cc.children[0] as Piece
+                            currPiece = ccp
+                            selectPiece(true)
+
+                            for (cj in 0..<pp.children.size) {
+//                                println(cj)
+                                val jcc = pp.children[cj] as Square
+                                if (jcc.col == prRow && jcc.row == 3) {
+                                    dropPiece(jcc)
+                                    currPlayer=if(currPlayer=="white")"black" else "white"
+                                }
+                            }
+                        }
+                    }
+                }else if (currentPiece.col == 6) {
+                    for (i in 0..<pp.children.size) {
+                        val cc = pp.children[i] as Square
+                        if (cc.col == prRow && cc.row == 7) {
+                            val ccp = cc.children[0] as Piece
+                            currPiece = ccp
+                            selectPiece(true)
+
+                            for (cj in 0..<pp.children.size) {
+//                                println(cj)
+                                val jcc = pp.children[cj] as Square
+                                if (jcc.col == prRow && jcc.row == 5) {
+                                    dropPiece(jcc)
+                                    currPlayer=if(currPlayer=="white")"black" else "white"
+
+                                }
+                            }
+                        }
+                    }
+                }
+//            println("" + prRow + "--" + prCol)
+        }
     }
 
     private fun deselectPiece(changePlayer: Boolean) {

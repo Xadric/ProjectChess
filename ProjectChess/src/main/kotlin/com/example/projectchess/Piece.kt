@@ -6,7 +6,7 @@ import javafx.scene.image.ImageView
 import javafx.scene.paint.Color
 
 open class Piece(var color:String, var row:Int, var col:Int,var type:String):ImageView() {
-    var posibleMoves: ArrayList<String>? = null
+    var kolMoves = 0
 
     //    var type:String?=null
     fun setPiece(image:Image){
@@ -24,9 +24,7 @@ open class Piece(var color:String, var row:Int, var col:Int,var type:String):Ima
         return (rowFin in 0..7)&&(colFin in 0..7)
     }
 
-    open fun showAllPosibleMoves(isOn: Boolean, cb: ChessBoard): ArrayList<String>? {
-        return posibleMoves
-    }
+
 //    fun getType():String{
 //        return type
 //    }

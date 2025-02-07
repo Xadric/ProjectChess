@@ -3,7 +3,7 @@ package com.example.projectchess
 import javafx.scene.layout.GridPane
 
 
-class Pawn(color: String, row: Int, col: Int) : Piece(color, row, col, "Pawn") {
+open class Pawn(color: String, row: Int, col: Int) : Piece(color, row, col, "Pawn") {
     override fun canPieceMove(rowFin: Int, colFin: Int): Boolean {
         if (super.canPieceMove(rowFin, colFin)) {
 //        if (((isWhite && rowFin - row > 0)||(!isWhite &&  rowFin - row < 0)))
